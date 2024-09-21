@@ -1,16 +1,17 @@
+# relationship_app/views.py
 from django.shortcuts import render
-from .models import Book, Library  # Make sure to import your models
+from .models import Book  # Assuming you have a Book model defined in your models.py
+from django.views.generic import DetailView
+from .models import Library 
 
 def list_books(request):
-    books = Book.objects.all()  # Retrieve all books from the database
+    books = Book.objects.all()
     return render(request, 'list_books.html', {'books': books})
 
-from django.views.generic import DetailView  # Import DetailView for class-based view
-
 class LibraryDetailView(DetailView):
-    model = Library  # The model to retrieve details from
-    template_name = 'library_detail.html'  # The template to use
-    context_object_name = 'library'  # Name of the context variable to use in the template
+    model = Library
+    template_name = 'library_detail.html'
+    context_object_name = 'library'
 
 
 
